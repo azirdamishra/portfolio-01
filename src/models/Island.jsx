@@ -21,7 +21,7 @@ const Island = ({isRotating, setisRotating, setCurrentStage, ...props}) => {
 
     const lastX = useRef(0);
     const rotationSpeed = useRef(0);
-    const dampingFactor = 0.95; //speed of rotation
+    const dampingFactor = 0.9; //speed of rotation
 
     const handlePointerDown = (e) => {
         e.stopPropagation();
