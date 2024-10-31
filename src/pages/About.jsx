@@ -2,6 +2,7 @@ import React from 'react'
 import { skills, experiences } from '../constants'
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component'
 import 'react-vertical-timeline-component/style.min.css'
+import CTA from '../components/CTA'
 //real thing to learn react components, classnames, flex, etc along with alerts and custom hooks
 
 const About = () => {
@@ -90,6 +91,7 @@ const About = () => {
       </div>
       
       <hr className='border-slate-200'/>
+      <CTA />
     </section>
   )
 }
