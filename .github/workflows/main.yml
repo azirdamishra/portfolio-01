@@ -53,11 +53,11 @@ jobs:
     #   run: |
     #     # Add deployment commands here
 
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v3.1.2
-      with:
-        name: dist-${{ github.ref_name }} #Adds branch name to artifact
-        path: dist/
+    # - name: Upload build artifacts
+    #   uses: actions/upload-artifact@v3.1.2
+    #   with:
+    #     name: dist-${{ github.ref_name }} #Adds branch name to artifact
+    #     path: dist/
 
     # Optional: Add branch name to build info
     - name: Build information
