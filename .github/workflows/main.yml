@@ -43,15 +43,17 @@ jobs:
       env:
        VITE_APP_EMAILJS_SERVICE_ID: ${{ secrets.VITE_APP_EMAILJS_SERVICE_ID }}
 
+    - name: Create production env file
+      run: |
+        echo "VITE_APP_EMAILJS_SERVICE_ID=${{ secrets.VITE_APP_EMAILJS_SERVICE_ID }}" >> .env.production
+        echo "VITE_APP_EMAILJS_TEMPLATE_ID=${{ secrets.VITE_APP_EMAILJS_TEMPLATE_ID }}" >> .env.production
+        echo "VITE_APP_EMAILJS_PUBLIC_KEY=${{ secrets.VITE_APP_EMAILJS_PUBLIC_KEY }}" >> .env.production
+        echo "VITE_APP_EMAILJS_MY_EMAIL=${{ secrets.VITE_APP_EMAILJS_MY_EMAIL }}" >> .env.production
+
     - name: Build project
       run: npm run build
       env:
         CI: true
-        VITE_APP_EMAILJS_SERVICE_ID: ${{ secrets.VITE_APP_EMAILJS_SERVICE_ID }}
-        VITE_APP_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_APP_EMAILJS_TEMPLATE_ID }}
-        VITE_APP_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_APP_EMAILJS_PUBLIC_KEY }}
-        VITE_APP_EMAILJS_MY_EMAIL: ${{ secrets.VITE_APP_EMAILJS_MY_EMAIL }}
-
 
     # - name: Run linting
     #   run: npm run lint
