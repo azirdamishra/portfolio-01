@@ -67,6 +67,9 @@ jobs:
     # - name: Type Check
     #   run: npm run type-check
 
+    - name: Check build output
+      run: ls -la dist
+
     - name: Deploy to Netlify
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       uses: nwtgck/actions-netlify@v2.0
