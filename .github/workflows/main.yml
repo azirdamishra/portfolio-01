@@ -53,6 +53,9 @@ jobs:
     - name: Show .env.production file
       run: cat .env.production
 
+    - name: Log env variables in CI
+      run: printenv | grep VITE_
+
     - name: Build project
       run: npm run build -- --mode production
       env:
