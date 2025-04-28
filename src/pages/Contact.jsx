@@ -25,7 +25,7 @@ const Contact = () => {
     setIsLoading(true);
     setcurrentAnimation('hit');
 
-    console.log(import.meta.env.VITE_APP_EMAILJS_SERVICE_ID);
+    console.log("PUBLIC KEY: ", import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY);
 
     emailjs.send(
       import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
