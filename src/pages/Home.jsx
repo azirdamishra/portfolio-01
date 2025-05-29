@@ -74,7 +74,7 @@ const Home = () => {
           <directionalLight position={[3,-6,7]} intensity={4}/>
           
           {/* Ambient light - reduced for darker atmosphere */}
-          <ambientLight intensity={0.8}/>
+          <ambientLight intensity={0.65}/>
           
           {/* Hemisphere light - reduced for darker sky */}
           <hemisphereLight 
