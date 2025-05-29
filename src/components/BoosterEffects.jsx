@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { forwardRef, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-const BoosterEffects = ({ isRotating, position, rotation }) => {
+const BoosterEffects = forwardRef((props, ref) => {
+  const { isRotating, position, rotation } = props;
   const particlesRef = useRef();
   const particles = [];
   const particleCount = 50;
@@ -78,6 +79,7 @@ const BoosterEffects = ({ isRotating, position, rotation }) => {
   });
 
   return (
+    <group ref={ref}>
     <points ref={particlesRef}>
       <bufferGeometry>
         <bufferAttribute
@@ -101,7 +103,8 @@ const BoosterEffects = ({ isRotating, position, rotation }) => {
         blending={THREE.AdditiveBlending}
       />
     </points>
+    </group>
   );
-};
+});
 
 export default BoosterEffects; 

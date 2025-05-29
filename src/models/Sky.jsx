@@ -1,5 +1,5 @@
-import { useGLTF } from '@react-three/drei'
 import React, { useRef } from 'react'
+import { useGLTF } from '@react-three/drei';
 import nightSkyScene from '../assets/3d/night_sky.glb'
 import { useFrame } from '@react-three/fiber';
 
@@ -9,8 +9,8 @@ const Sky = ({ isRotating }) => {
 
     useFrame((_, delta) => {
       if(isRotating){
-        skyRef.current.rotation.y += 0.15 * delta
-      }
+            skyRef.current.rotation.y += 0.15 * delta
+        }
     })
 
     return (
@@ -20,4 +20,4 @@ const Sky = ({ isRotating }) => {
     )
 }
 
-export default Sky
+export default Sky 

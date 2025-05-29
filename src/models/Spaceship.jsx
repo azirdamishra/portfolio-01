@@ -21,12 +21,22 @@ const Spaceship = ({isRotating, ...props }) => {
         <group {...props}>
             <mesh ref={ref}>
                 <primitive object={scene}/>
-            </mesh>
-            {/* Add booster effects at the back of the spaceship */}
-            <BoosterEffects 
+                {/* <BoosterEffects 
                 isRotating={isRotating}
-                position={[0, 0, -1]} // Adjust these values based on your spaceship model
+                position={[0, 0, -5]}
                 rotation={[0, 0, 0]}
+                /> */}
+            </mesh>
+            
+            <spotLight
+                position={[0, 5, 5]}
+                angle={0.75}
+                penumbra={0.2}
+                intensity={100}
+                distance={10}
+                color="#ffffff"
+                castShadow
+                target={ref.current}
             />
         </group>
     )

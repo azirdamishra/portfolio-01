@@ -4,7 +4,6 @@ import Loader from '../components/Loader'
 import Island from '../models/Island'
 import Sky from '../models/Sky'
 import Bird from '../models/Bird'
-import Plane from '../models/Plane'
 import IslandObject from '../models/IslandObject'
 import HomeInfo from '../components/HomeInfo'
 import * as THREE from 'three';
@@ -12,6 +11,7 @@ import * as THREE from 'three';
 
 //Import the static model object
 import pickleRickModel from '../assets/3d/pickle_rick.glb'
+import Spaceship from '../models/Spaceship'
 
 const Home = () => {
 
@@ -46,10 +46,10 @@ const Home = () => {
     let screenScale ,screenPosition;
 
     if(window.innerWidth < 768){
-      screenScale = [1.5, 1.5, 1.5];
+      screenScale = [0.5, 0.5, 0.5];
       screenPosition = [0, -1.5, 0];
     } else {
-      screenScale = [3, 3, 3];
+      screenScale = [1, 1, 1];
       screenPosition = [0, -4, -4];
     }
 
@@ -67,7 +67,7 @@ const Home = () => {
       <Canvas 
         className={`w-full h-screen bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
         shadows
-        camera={{ near:0.1, far: 1000}}
+        camera={{ near:0.12, far: 1000}}
       >
         <Suspense fallback={<Loader />}>
           {/* Main directional light - reduced intensity */}
@@ -125,7 +125,7 @@ const Home = () => {
               rotation={[0, 14, 0]}
             />
           </Island>
-          <Plane 
+          <Spaceship 
             position = {planePostion}
             scale = {planeScale}
             isRotating = {isRotating}
