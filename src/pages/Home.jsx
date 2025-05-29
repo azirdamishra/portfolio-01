@@ -83,19 +83,6 @@ const Home = () => {
             intensity={0.6}
           />
           
-          {/* Main spotlight for the scene */}
-          {/* <spotLight
-            ref={spotLightRef}
-            position={[0, 30, 0]}
-            angle={0.5}
-            penumbra={0.5}
-            intensity={15}
-            castShadow
-            shadow-mapSize={2048}
-            color="#ffffff"
-            target={targetRef.current}
-          /> */}
-          
           <primitive object={targetRef.current} />
 
           {/* Additional fill light */}
@@ -122,7 +109,7 @@ const Home = () => {
               modelPath={pickleRickModel}
               position={[0, 5, 0]}
               scale={[15, 15, 15]}
-              rotation={[0, 14, 0]}
+              rotation={[0, 14.10, 0]}
             />
           </Island>
           <Spaceship 

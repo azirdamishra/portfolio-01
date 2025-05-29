@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import {arrow} from '../assets/icons'
 
 const InfoBox = ({ text, link, btnText }) => (
-    <div className='sm:text-xl sm:leading-snug text-center bg-blue-500/30 backdrop-blur-sm rounded-lg py-4 px-8 text-white mx-5 border border-blue-400/50'>
+    <div className='sm:text-xl sm:leading-snug text-center bg-blue-500/30 backdrop-blur-sm rounded-lg py-4 px-8 text-white mx-5 border border-blue-400/50 relative'>
         <p className='font-medium'>{text}</p>
-        <Link to={link} className='font-medium mt-4 text-sm px-4 py-3 inline-flex items-center bg-black/30 backdrop-blur-sm rounded-lg border border-white/30 hover:bg-black/40 transition-colors'>
+        <Link to={link} className='font-medium mt-4 text-sm px-2 py-1 inline-flex items-center bg-[#00ff00]/30 backdrop-blur-sm rounded-lg border border-[#00ff00]/50 hover:bg-[#00ff00]/40 transition-colors absolute -bottom-4 left-1/2 transform -translate-x-1/2 text-black'>
             {btnText}
             <img src={arrow} className='w-3 h-3 object-contain ml-1'/>
         </Link>
