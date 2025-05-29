@@ -71,16 +71,16 @@ const Home = () => {
       >
         <Suspense fallback={<Loader />}>
           {/* Main directional light - reduced intensity */}
-          <directionalLight position={[-3,-6,-7]} intensity={4}/>
+          <directionalLight position={[3,-6,7]} intensity={4}/>
           
           {/* Ambient light - reduced for darker atmosphere */}
-          <ambientLight intensity={0.7}/>
+          <ambientLight intensity={0.8}/>
           
           {/* Hemisphere light - reduced for darker sky */}
           <hemisphereLight 
             skyColor="#000000" 
             groundColor="#000000" 
-            intensity={0.05}
+            intensity={0.6}
           />
           
           {/* Main spotlight for the scene */}
