@@ -1,18 +1,32 @@
-import React, { Suspense, useState } from 'react'
+import React, { Suspense, useState, useEffect, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import Loader from '../components/Loader'
 import Island from '../models/Island'
 import Sky from '../models/Sky'
 import Bird from '../models/Bird'
 import Plane from '../models/Plane'
+import IslandObject from '../models/IslandObject'
 import HomeInfo from '../components/HomeInfo'
+import * as THREE from 'three';
 
 
+//Import the static model object
+import pickleRickModel from '../assets/3d/pickle_rick.glb'
 
 const Home = () => {
 
   const [isRotating, setisRotating] = useState(false);
   const [currentStage, setCurrentStage] = useState(1);
+  const spotLightRef = useRef();
+  const targetRef = useRef(new THREE.Object3D());
+
+  useEffect(() => {
+    // Log to verify the model path
+    console.log('Pickle Rick model path:', pickleRickModel);
+    if (targetRef.current) {
+      targetRef.current.position.set(0, 0, 0); // Aim at center of island
+    }
+  }, []);
 
   const adjustIslandForScreenSize = () => {
     let screenScale = null;
@@ -47,17 +61,49 @@ const Home = () => {
 
   return (
     <section className='w-full h-screen relative'>
-       <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
+      <div className='absolute bottom-10 left-0 right-0 z-10 flex items-center justify-center'>
         {currentStage && <HomeInfo currentStage={currentStage} />}
       </div>  
       <Canvas 
         className={`w-full h-screen bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
+        shadows
         camera={{ near:0.1, far: 1000}}
       >
         <Suspense fallback={<Loader />}>
-          <directionalLight position={[1,1,1]} intensity={2}/>
-          <ambientLight intensity={0.5}/>
-          <hemisphereLight skyColor="#b1e1ff" groundColor="#000000" intensity={1}/>
+          {/* Main directional light - reduced intensity */}
+          <directionalLight position={[-3,-6,-7]} intensity={4}/>
+          
+          {/* Ambient light - reduced for darker atmosphere */}
+          <ambientLight intensity={0.7}/>
+          
+          {/* Hemisphere light - reduced for darker sky */}
+          <hemisphereLight 
+            skyColor="#000000" 
+            groundColor="#000000" 
+            intensity={0.05}
+          />
+          
+          {/* Main spotlight for the scene */}
+          {/* <spotLight
+            ref={spotLightRef}
+            position={[0, 30, 0]}
+            angle={0.5}
+            penumbra={0.5}
+            intensity={15}
+            castShadow
+            shadow-mapSize={2048}
+            color="#ffffff"
+            target={targetRef.current}
+          /> */}
+          
+          <primitive object={targetRef.current} />
+
+          {/* Additional fill light */}
+          <pointLight
+            position={[10, 10, 10]}
+            intensity={2}
+            color="#ffffff"
+          />
 
           <Bird />
           <Sky 
@@ -71,7 +117,14 @@ const Home = () => {
             setisRotating = {setisRotating}
             currentStage = {currentStage}
             setCurrentStage = {setCurrentStage}
-          />
+          >
+            <IslandObject
+              modelPath={pickleRickModel}
+              position={[0, 5, 0]}
+              scale={[15, 15, 15]}
+              rotation={[0, 14, 0]}
+            />
+          </Island>
           <Plane 
             position = {planePostion}
             scale = {planeScale}
