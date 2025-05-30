@@ -76,6 +76,17 @@ Feel free to fork this project and make it your own! Just remember to:
 
 MIT License - Feel free to use this code in your own projects. Just don't forget to give credit where it's due!
 
+## 🙏 Credits & Resources
+
+### 3D Models & Assets
+- Spaceship Model: [https://skfb.ly/orZnE]
+- Island Model: [https://skfb.ly/ouEVX (sample)]
+- Pickle Rick Model: [https://skfb.ly/oDKXM]
+- Night Sky: [https://skfb.ly/6BZ67]
+
+### Tutorial & Inspiration
+This project was inspired by [Adrian Hajdin's 3D Portfolio Tutorial](https://www.youtube.com/watch?v=0fYi8SGA20k). While I've customized it with my own Rick and Morty theme and additional features, the core 3D implementation concepts came from this excellent tutorial.
+
 ---
 
 Made with 💚 and a lot of sci-fi inspiration
