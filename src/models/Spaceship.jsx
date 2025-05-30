@@ -2,7 +2,6 @@ import { useAnimations, useGLTF } from '@react-three/drei'
 import React, { useEffect, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
-import BoosterEffects from '../components/BoosterEffects'
 
 import spaceshipScene from '../assets/3d/spaceship.glb'
 
