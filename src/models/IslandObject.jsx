@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useGLTF } from '@react-three/drei';
 
+import rickObject from '../assets/3d/pickle_rick.glb'
+
 const IslandObject = ({ modelPath, position, scale, rotation }) => {
   console.log('IslandObject rendering with modelPath:', modelPath);
   
@@ -34,6 +36,6 @@ const IslandObject = ({ modelPath, position, scale, rotation }) => {
 };
 
 // Preload the model with the correct path
-useGLTF.preload('/src/assets/3d/pickle_rick.glb');
+useGLTF.preload(rickObject);
 
 export default IslandObject; 
