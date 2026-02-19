@@ -122,6 +122,7 @@ export const experiences = [
             "Implementing responsive design and ensuring cross-browser compatibility.",
             "Participating in code reviews and providing constructive feedback to other developers.",
         ],
+        tools: "React, JavaScript, HTML, CSS, Git, REST APIs",
     },
     {
         title: "React Native Developer",
@@ -135,6 +136,7 @@ export const experiences = [
             "Implementing responsive design and ensuring cross-browser compatibility.",
             "Participating in code reviews and providing constructive feedback to other developers.",
         ],
+        tools: "React Native, TypeScript, Redux, Motion, Node.js",
     },
     {
         title: "Web Developer",
@@ -148,6 +150,7 @@ export const experiences = [
             "Implementing responsive design and ensuring cross-browser compatibility.",
             "Participating in code reviews and providing constructive feedback to other developers.",
         ],
+        tools: "React, Next.js, Tailwind CSS, MongoDB, Express",
     },
     {
         title: "Full stack Developer",
@@ -161,6 +164,7 @@ export const experiences = [
             "Implementing responsive design and ensuring cross-browser compatibility.",
             "Participating in code reviews and providing constructive feedback to other developers.",
         ],
+        tools: "React, TypeScript, Node.js, MongoDB, Material-UI, Git",
     },
 ];
 

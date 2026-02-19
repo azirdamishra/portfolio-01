@@ -16,9 +16,11 @@ import Spaceship from '../models/Spaceship'
 const Home = () => {
 
   const [isRotating, setisRotating] = useState(false);
+  const [isDraggingIsland, setIsDraggingIsland] = useState(false);
   const [currentStage, setCurrentStage] = useState(1);
   const spotLightRef = useRef();
   const targetRef = useRef(new THREE.Object3D());
+  const rotationControlsRef = useRef(null);
 
   useEffect(() => {
     // Log to verify the model path
@@ -59,13 +61,69 @@ const Home = () => {
   const [islandScale, islandPosition, islandRotation] = adjustIslandForScreenSize();
   const [planeScale, planePostion] = adjustPlaneForScreenSize();
 
+  const holdIntervalRef = useRef(null);
+
+  const startRotateLeft = () => {
+    rotationControlsRef.current?.rotateLeft?.();
+    holdIntervalRef.current = setInterval(() => {
+      rotationControlsRef.current?.rotateLeft?.();
+    }, 80);
+  };
+
+  const startRotateRight = () => {
+    rotationControlsRef.current?.rotateRight?.();
+    holdIntervalRef.current = setInterval(() => {
+      rotationControlsRef.current?.rotateRight?.();
+    }, 80);
+  };
+
+  const stopRotate = () => {
+    if (holdIntervalRef.current) {
+      clearInterval(holdIntervalRef.current);
+      holdIntervalRef.current = null;
+    }
+    rotationControlsRef.current?.stopRotating?.();
+  };
+
   return (
     <section className='w-full h-screen relative'>
+      {/* Arrow controls - on either side of the island, hold to rotate */}
+      <button
+        onMouseDown={(e) => { e.preventDefault(); startRotateLeft(); }}
+        onMouseUp={stopRotate}
+        onMouseLeave={stopRotate}
+        onTouchStart={(e) => { e.preventDefault(); startRotateLeft(); }}
+        onTouchEnd={stopRotate}
+        onTouchCancel={stopRotate}
+        className='absolute left-8 top-1/2 -translate-y-1/2 z-20 w-14 h-14 flex items-center justify-center rounded-full bg-slate-800/80 backdrop-blur-md border-2 border-white/50 hover:bg-slate-700/90 hover:scale-110 transition-all shadow-xl select-none'
+        aria-label='Rotate left'
+      >
+        <svg className='w-7 h-7 text-white pointer-events-none' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+          <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M15 19l-7-7 7-7' />
+        </svg>
+      </button>
+      <button
+        onMouseDown={(e) => { e.preventDefault(); startRotateRight(); }}
+        onMouseUp={stopRotate}
+        onMouseLeave={stopRotate}
+        onTouchStart={(e) => { e.preventDefault(); startRotateRight(); }}
+        onTouchEnd={stopRotate}
+        onTouchCancel={stopRotate}
+        className='absolute right-8 top-1/2 -translate-y-1/2 z-20 w-14 h-14 flex items-center justify-center rounded-full bg-slate-800/80 backdrop-blur-md border-2 border-white/50 hover:bg-slate-700/90 hover:scale-110 transition-all shadow-xl select-none'
+        aria-label='Rotate right'
+      >
+        <svg className='w-7 h-7 text-white pointer-events-none' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+          <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
+        </svg>
+      </button>
+      {/* <p className='absolute bottom-20 left-1/2 -translate-x-1/2 z-10 text-white/80 text-sm text-center'>
+        Use arrows or drag to explore
+      </p> */}
       <div className='absolute bottom-10 left-0 right-0 z-10 flex items-center justify-center'>
         {currentStage && <HomeInfo currentStage={currentStage} />}
       </div>  
       <Canvas 
-        className={`w-full h-screen bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
+        className={`w-full h-screen bg-transparent ${isDraggingIsland ? 'cursor-grabbing' : 'cursor-default'}`}
         shadows
         camera={{ near:0.12, far: 1000}}
       >
@@ -93,9 +151,7 @@ const Home = () => {
           />
 
           <Bird />
-          <Sky 
-            isRotating = {isRotating}
-          />
+          <Sky />
           <Island 
             position = {islandPosition}
             scale = {islandScale}
@@ -104,6 +160,8 @@ const Home = () => {
             setisRotating = {setisRotating}
             currentStage = {currentStage}
             setCurrentStage = {setCurrentStage}
+            rotationControlsRef = {rotationControlsRef}
+            setIsDraggingIsland = {setIsDraggingIsland}
           >
             <IslandObject
               modelPath={pickleRickModel}

@@ -3,14 +3,13 @@ import { useGLTF } from '@react-three/drei';
 import nightSkyScene from '../assets/3d/night_sky.glb'
 import { useFrame } from '@react-three/fiber';
 
-const Sky = ({ isRotating }) => {
+const Sky = () => {
     const sky = useGLTF(nightSkyScene);
     const skyRef = useRef();
 
     useFrame((_, delta) => {
-      if(isRotating){
-            skyRef.current.rotation.y += 0.15 * delta
-        }
+        // Rotate constantly, independent of user interaction (like the Bird)
+        skyRef.current.rotation.y += 0.1 * delta;
     })
 
     return (

@@ -13,7 +13,7 @@ import { a } from '@react-spring/three'
 
 import islandScene from '../assets/3d/island.glb'
 
-const Island = ({isRotating, setisRotating, setCurrentStage, children, ...props}) => {
+const Island = ({isRotating, setisRotating, setCurrentStage, rotationControlsRef, setIsDraggingIsland, children, ...props}) => {
     const islandRef = useRef();
   
     const { nodes, materials } = useGLTF(islandScene);
@@ -23,10 +23,33 @@ const Island = ({isRotating, setisRotating, setCurrentStage, children, ...props}
     const rotationSpeed = useRef(0);
     const dampingFactor = 0.9; //speed of rotation
 
+    useEffect(() => {
+        if (rotationControlsRef) {
+            rotationControlsRef.current = {
+                rotateLeft: () => {
+                    if (!isRotating) setisRotating(true);
+                    if (islandRef.current) {
+                        islandRef.current.rotation.y += 0.01 * Math.PI;
+                        rotationSpeed.current = 0.0125;
+                    }
+                },
+                rotateRight: () => {
+                    if (!isRotating) setisRotating(true);
+                    if (islandRef.current) {
+                        islandRef.current.rotation.y -= 0.01 * Math.PI;
+                        rotationSpeed.current = -0.0125;
+                    }
+                },
+                stopRotating: () => setisRotating(false),
+            };
+        }
+    }, [rotationControlsRef, isRotating, setisRotating]);
+
     const handlePointerDown = (e) => {
         e.stopPropagation();
         e.preventDefault();
         setisRotating(true);
+        setIsDraggingIsland?.(true);
 
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
 
@@ -37,6 +60,7 @@ const Island = ({isRotating, setisRotating, setCurrentStage, children, ...props}
         e.stopPropagation();
         e.preventDefault();
         setisRotating(false);
+        setIsDraggingIsland?.(false);
     }
 
     const handlePointerMove = (e) => {
