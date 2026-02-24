@@ -2,14 +2,24 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { hero } from '../assets/images'
 import CTA from '../components/CTA'
-import { arrow } from '../assets/icons'
+import { arrow, download } from '../assets/icons'
 
 const About = () => {
   return (
     <section className='max-container'>
-      <h1 className='head-text'>
-        Hello, I'm <span className='blue-gradient_text font-semibold drop-shadow'>Adriza</span>
-      </h1>
+      <div className='flex flex-wrap items-center justify-between gap-4 w-full'>
+        <h1 className='head-text'>
+          Hello, I'm <span className='blue-gradient_text font-semibold drop-shadow'>Adriza</span>
+        </h1>
+        <a
+          href="/Adriza_resume.pdf"
+          download="Adriza_Resume.pdf"
+          className='inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500/10 border border-blue-400/30 hover:bg-blue-500/20 hover:border-blue-400/50 transition-all duration-200 text-blue-600 font-medium text-sm shrink-0'
+        >
+          <img src={download} className='w-4 h-4' alt="" />
+          Download Resume
+        </a>
+      </div>
 
       {/* Hero: Photo + Bio */}
       <div className='mt-10 flex flex-col lg:flex-row gap-10 items-center lg:items-start'>

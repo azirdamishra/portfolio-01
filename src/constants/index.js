@@ -1,4 +1,4 @@
-import { meta, shopify, starbucks, tesla } from "../assets/images";
+import { honeywell } from "../assets/images";
 import {
     car,
     contact,
@@ -23,19 +23,92 @@ import {
     summiz,
     tailwindcss,
     threads,
-    typescript
+    typescript,
+    python,
+    java,
+    webpack,
+    docker,
+    kubernetes,
+    fastapi,
+    tensorflow,
+    redis,
+    postgresql,
+    mlflow,
+    keras,
+    axios,
+    pandas,
+    numpy,
+    databricks,
+    microsoftazure,
+    openai,
+    apachemaven
 } from "../assets/icons";
 
 export const skills = [
+    {
+        imageUrl: javascript,
+        name: "JavaScript",
+        type: "Programming",
+    },
+    {
+        imageUrl: typescript,
+        name: "TypeScript",
+        type: "Programming",
+    },
+    {
+        imageUrl: python,
+        name: "Python",
+        type: "Programming",
+    },
+    {
+        imageUrl: java,
+        name: "Java",
+        type: "Programming",
+    },
+    {
+        imageUrl: html,
+        name: "HTML",
+        type: "Frontend",
+    },
     {
         imageUrl: css,
         name: "CSS",
         type: "Frontend",
     },
     {
+        imageUrl: react,
+        name: "React",
+        type: "Frontend",
+    },
+    {
+        imageUrl: nodejs,
+        name: "Node.js",
+        type: "Backend",
+    },
+    {
         imageUrl: express,
         name: "Express",
         type: "Backend",
+    },
+    {
+        imageUrl: fastapi,
+        name: "FastAPI",
+        type: "Backend",
+    },
+    {
+        imageUrl: tailwindcss,
+        name: "Tailwind CSS",
+        type: "Frontend",
+    },
+    {
+        imageUrl: axios,
+        name: "Axios",
+        type: "Frontend",
+    },
+    {
+        imageUrl: webpack,
+        name: "Webpack",
+        type: "Build & Tooling",
     },
     {
         imageUrl: git,
@@ -48,19 +121,74 @@ export const skills = [
         type: "Version Control",
     },
     {
-        imageUrl: html,
-        name: "HTML",
-        type: "Frontend",
+        imageUrl: docker,
+        name: "Docker",
+        type: "DevOps",
     },
     {
-        imageUrl: javascript,
-        name: "JavaScript",
-        type: "Frontend",
+        imageUrl: kubernetes,
+        name: "Kubernetes",
+        type: "DevOps",
+    },
+    {
+        imageUrl: microsoftazure,
+        name: "Azure",
+        type: "Cloud",
+    },
+    {
+        imageUrl: redis,
+        name: "Redis",
+        type: "Database",
+    },
+    {
+        imageUrl: postgresql,
+        name: "PostgreSQL",
+        type: "Database",
     },
     {
         imageUrl: mongodb,
         name: "MongoDB",
         type: "Database",
+    },
+    {
+        imageUrl: tensorflow,
+        name: "TensorFlow",
+        type: "ML & Data",
+    },
+    {
+        imageUrl: keras,
+        name: "Keras",
+        type: "ML & Data",
+    },
+    {
+        imageUrl: mlflow,
+        name: "MLflow",
+        type: "ML & Data",
+    },
+    {
+        imageUrl: databricks,
+        name: "Databricks",
+        type: "ML & Data",
+    },
+    {
+        imageUrl: pandas,
+        name: "Pandas",
+        type: "ML & Data",
+    },
+    {
+        imageUrl: numpy,
+        name: "NumPy",
+        type: "ML & Data",
+    },
+    {
+        imageUrl: openai,
+        name: "OpenAI",
+        type: "AI",
+    },
+    {
+        imageUrl: apachemaven,
+        name: "Maven",
+        type: "Build & Tooling",
     },
     {
         imageUrl: motion,
@@ -78,16 +206,6 @@ export const skills = [
         type: "Frontend",
     },
     {
-        imageUrl: nodejs,
-        name: "Node.js",
-        type: "Backend",
-    },
-    {
-        imageUrl: react,
-        name: "React",
-        type: "Frontend",
-    },
-    {
         imageUrl: redux,
         name: "Redux",
         type: "State Management",
@@ -97,74 +215,26 @@ export const skills = [
         name: "Sass",
         type: "Frontend",
     },
-    {
-        imageUrl: tailwindcss,
-        name: "Tailwind CSS",
-        type: "Frontend",
-    },
-    {
-        imageUrl: typescript,
-        name: "TypeScript",
-        type: "Frontend",
-    }
 ];
 
 export const experiences = [
     {
-        title: "React.js Developer",
-        company_name: "Starbucks",
-        icon: starbucks,
-        iconBg: "#accbe1",
-        date: "March 2020 - April 2021",
+        title: "Software Engineer II",
+        company_name: "Honeywell",
+        icon: honeywell,
+        iconBg: "#ffffff",
+        date: "July 2023 - Present",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
+            "Built an ML orchestration platform on Databricks for 100+ models across 20+ clients. Cut manual setup by 80% while keeping 99.5% reliability.",
+            "Designed FastAPI microservices for training, security scanning, and inference. Async patterns and Pydantic validation kept things responsive under load.",
+            "Built autoencoder-based anomaly detection for IoT predictive maintenance. Added drift monitoring across 50+ variables and support for 10+ model types (TensorFlow, PyTorch, scikit-learn).",
+            "Patented a security validation pipeline that wires 5 scanning tools for 8+ automated checks. Validation time down to under 10 min; found 40+ critical vulnerabilities; maintained SOC2 compliance.",
+            "Built a deployment pipeline that containerizes models for Kubernetes or Databricks. Deployments went from 3 days to 30 min; infrastructure costs down 35%.",
+            "Shipped an ML inference service handling 10K+ daily predictions across 50+ models with sub-100ms latency. Delta Lake writes and drift detection cut debug cycles by 60%.",
+            "Led QA for Honeywell's flagship LLM assistant—won the company bug bash. Wrote a whitepaper on LLM testing strategies; frameworks led to patent submissions.",
+            "Built a test suite (WebDriverIO + Behave) covering 150+ scenarios with 90% coverage. Regression testing went from 40 hours to 5 per sprint; daily deployments became possible.",
         ],
-        tools: "React, JavaScript, HTML, CSS, Git, REST APIs",
-    },
-    {
-        title: "React Native Developer",
-        company_name: "Tesla",
-        icon: tesla,
-        iconBg: "#fbc3bc",
-        date: "Jan 2021 - Feb 2022",
-        points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
-        ],
-        tools: "React Native, TypeScript, Redux, Motion, Node.js",
-    },
-    {
-        title: "Web Developer",
-        company_name: "Shopify",
-        icon: shopify,
-        iconBg: "#b7e4c7",
-        date: "Jan 2022 - Jan 2023",
-        points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
-        ],
-        tools: "React, Next.js, Tailwind CSS, MongoDB, Express",
-    },
-    {
-        title: "Full stack Developer",
-        company_name: "Meta",
-        icon: meta,
-        iconBg: "#a2d2ff",
-        date: "Jan 2023 - Present",
-        points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
-        ],
-        tools: "React, TypeScript, Node.js, MongoDB, Material-UI, Git",
+        tools: "MLFlow, FastAPI, Databricks, Unity Catalog, TensorFlow, Coverity, ModelScan, Twistlock, Black Duck Hub, Azure Cloud, Postgres, Azure Delta Lake, Kubernetes, Python Behave",
     },
 ];
 

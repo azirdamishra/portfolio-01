@@ -23,6 +23,25 @@ import snapgram from './snapgram.svg'
 import summiz from './summiz.svg'
 import threads from './threads.svg'
 import arrow from './arrow.svg'
+import download from './download.svg'
+import python from './python.svg'
+import java from './java.svg'
+import webpack from './webpack.svg'
+import docker from './docker.svg'
+import kubernetes from './kubernetes.svg'
+import fastapi from './fastapi.svg'
+import tensorflow from './tensorflow.svg'
+import redis from './redis.svg'
+import postgresql from './postgresql.svg'
+import mlflow from './mlflow.svg'
+import keras from './keras.svg'
+import axios from './axios.svg'
+import pandas from './pandas.svg'
+import numpy from './numpy.svg'
+import databricks from './databricks.svg'
+import microsoftazure from './microsoftazure.svg'
+import openai from './openai.svg'
+import apachemaven from './apachemaven.svg'
 import contact from './contact.svg'
 import soundon from './soundon.png'
 import soundoff from './soundoff.png'
@@ -53,6 +72,25 @@ export {
     summiz,
     threads,
     arrow,
+    download,
+    python,
+    java,
+    webpack,
+    docker,
+    kubernetes,
+    fastapi,
+    tensorflow,
+    redis,
+    postgresql,
+    mlflow,
+    keras,
+    axios,
+    pandas,
+    numpy,
+    databricks,
+    microsoftazure,
+    openai,
+    apachemaven,
     contact,
     soundon,
     soundoff
