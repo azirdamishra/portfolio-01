@@ -32,10 +32,13 @@ const About = () => {
         </div>
         <div className='flex-1 flex flex-col gap-4 text-slate-600'>
           <p className='text-lg leading-relaxed'>
-            Software Engineer based in India, specializing in technical education through hands-on learning and building applications.
+          Software Engineer based in India who gets excited about hard problems. From optimizing gnarly systems to untangling complex architectures, I'm happiest when I'm deep in research mode, hunting for that elegant solution.
           </p>
           <p className='text-lg leading-relaxed'>
-            I blend creativity with logic—design for the eye, fashion for expression, and code to bring ideas to life. When I'm not shipping features, you'll find me exploring UI/UX, staying curious about trends, and turning ideas into reality.
+          I believe creativity and good design should go hand in hand - not just in how something works, but also in its look, feel, and interaction with the user. Fashion, for me, has become a way of living this philosophy; expressing ideas and identity through deliberate choices. That eye for detail and aesthetics carries directly into the interfaces and experiences I build.
+          </p>
+          <p className='text-lg leading-relaxed'>
+          I love turning complex ideas into things people can actually understand, use, and enjoy. If your team needs someone who codes with both logic and a creative eye, and won't stop until they've found the better way; let's talk!
           </p>
         </div>
       </div>
