@@ -24,13 +24,13 @@ const AboutExperience = () => {
       {/* Tools section - above work experience */}
       <div className='py-10 flex flex-col'>
         <h3 className='subhead-text'>Tools & Skills</h3>
-        <div className='mt-8 flex flex-wrap gap-x-12 gap-y-14'>
+        <div className='mt-8 flex flex-wrap gap-x-8 gap-y-10'>
           {skills.map((skill) => (
             <div
               key={skill.name}
               className='group relative flex flex-col items-center pb-2'
             >
-              <div className='block-container w-20 h-20'>
+              <div className='block-container w-14 h-14'>
                 <div className='btn-back rounded-xl'/>
                 <div className='btn-front rounded-xl flex justify-center items-center'>
                   <img
