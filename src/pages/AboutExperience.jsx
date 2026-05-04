@@ -87,11 +87,19 @@ const AboutExperience = () => {
                   </p>
                 </div>
                 <ul className='my-5 list-disc ml-5 space-y-2'>
-                  {experience.points.map((point, index) => (
-                    <li key={`experience-point-${index}`} className='text-black-500/50 font-normal pl-1 text-sm'>
-                      {point}
-                    </li>
-                  ))}
+                  {experience.points.map((point, index) =>
+                    typeof point === 'object' && point.heading ? (
+                      <li key={`experience-point-${index}`} className='list-none -ml-5 mt-4 mb-1'>
+                        <span className='text-black-500 font-semibold italic text-sm tracking-wide'>
+                          {point.heading}
+                        </span>
+                      </li>
+                    ) : (
+                      <li key={`experience-point-${index}`} className='text-black-500/50 font-normal pl-1 text-sm'>
+                        {point}
+                      </li>
+                    )
+                  )}
                 </ul>
                 {experience.tools && (
                   <div className='mt-4 pt-3 border-t border-slate-200'>

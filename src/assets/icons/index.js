@@ -42,6 +42,7 @@ import databricks from './databricks.svg'
 import microsoftazure from './microsoftazure.svg'
 import openai from './openai.svg'
 import apachemaven from './apachemaven.svg'
+import springboot from './springboot.svg'
 import contact from './contact.svg'
 import soundon from './soundon.png'
 import soundoff from './soundoff.png'
@@ -91,6 +92,7 @@ export {
     microsoftazure,
     openai,
     apachemaven,
+    springboot,
     contact,
     soundon,
     soundoff
