@@ -17,6 +17,11 @@ export default defineConfig({
         target: 'https://lox-core-api.onrender.com',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/lox/, '/api'),
+        configure: (proxy) => {
+          proxy.on('proxyReq', (proxyReq) => {
+            proxyReq.removeHeader('origin')
+          })
+        },
       },
     },
   },
