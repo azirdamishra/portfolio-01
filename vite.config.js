@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
-// REPLACE "yourname" below with your actual Substack username
 export default defineConfig({
   plugins: [react()],
   assetsInclude: ['**/*.glb'],
@@ -11,12 +10,12 @@ export default defineConfig({
       '/api/feed': {
         target: 'https://drizzywhiz.substack.com',
         changeOrigin: true,
-        rewrite: (path) => '/feed',
+        rewrite: () => '/feed',
       },
-      '/.netlify/functions/lox-execute': {
+      '/api/lox': {
         target: 'https://lox-core-api.onrender.com',
         changeOrigin: true,
-        rewrite: () => '/api/execute',
+        rewrite: (path) => path.replace(/^\/api\/lox/, '/api'),
         configure: (proxy) => {
           proxy.on('proxyReq', (proxyReq) => {
             proxyReq.removeHeader('origin')
