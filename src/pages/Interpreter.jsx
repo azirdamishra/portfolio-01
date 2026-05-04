@@ -89,15 +89,76 @@ export default function Interpreter() {
 
     abortRef.current = new AbortController()
 
+    const LOX_ENDPOINT = '/api/lox/execute'
+
     try {
-      const res = await fetch('/.netlify/functions/lox-execute', {
+      const res = await fetch(LOX_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ source }),
         signal: abortRef.current.signal,
       })
 
-      const data = await res.json()
+      // #region agent log
+      const _ct = res.headers.get('content-type') || ''
+      const _bodyText = await res.clone().text()
+      const _preview = _bodyText.slice(0, 400)
+      // eslint-disable-next-line no-console
+      console.log('[lox-debug] response', { url: LOX_ENDPOINT, status: res.status, contentType: _ct, bodyPreview: _preview })
+      fetch('http://127.0.0.1:7688/ingest/3f01cafa-52db-46c7-a18e-d053a1a43331', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '3db7fb' },
+        body: JSON.stringify({
+          sessionId: '3db7fb',
+          hypothesisId: 'A',
+          location: 'src/pages/Interpreter.jsx:fetch-response',
+          message: 'lox-execute response received (pre json parse)',
+          data: {
+            url: LOX_ENDPOINT,
+            origin: typeof window !== 'undefined' ? window.location.origin : null,
+            status: res.status,
+            ok: res.ok,
+            contentType: _ct,
+            bodyLength: _bodyText.length,
+            bodyPreview: _preview,
+            looksLikeJson: _ct.includes('application/json'),
+            looksLikeHtml: _ct.includes('text/html') || _bodyText.startsWith('<'),
+          },
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {})
+      // #endregion
+
+      let data
+      try {
+        data = _bodyText ? JSON.parse(_bodyText) : {}
+      } catch (parseErr) {
+        // #region agent log
+        fetch('http://127.0.0.1:7688/ingest/3f01cafa-52db-46c7-a18e-d053a1a43331', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '3db7fb' },
+          body: JSON.stringify({
+            sessionId: '3db7fb',
+            hypothesisId: 'A',
+            location: 'src/pages/Interpreter.jsx:json-parse-error',
+            message: 'JSON.parse threw on response body',
+            data: {
+              errName: parseErr?.name,
+              errMessage: parseErr?.message,
+              status: res.status,
+              contentType: _ct,
+              bodyPreview: _preview,
+            },
+            timestamp: Date.now(),
+          }),
+        }).catch(() => {})
+        // #endregion
+        pushLines([
+          { type: 'error', text: `Server returned non-JSON (HTTP ${res.status}, ${_ct || 'no content-type'}).` },
+          { type: 'error', text: `First 200 chars: ${_preview.slice(0, 200)}` },
+        ])
+        return
+      }
 
       if (!res.ok) {
         pushLines([{ type: 'error', text: data.error ?? data.message ?? `HTTP ${res.status}` }])
@@ -116,6 +177,20 @@ export default function Interpreter() {
         }
       }
     } catch (err) {
+      // #region agent log
+      fetch('http://127.0.0.1:7688/ingest/3f01cafa-52db-46c7-a18e-d053a1a43331', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '3db7fb' },
+        body: JSON.stringify({
+          sessionId: '3db7fb',
+          hypothesisId: 'A',
+          location: 'src/pages/Interpreter.jsx:fetch-catch',
+          message: 'fetch threw before/after response',
+          data: { errName: err?.name, errMessage: err?.message, errStack: (err?.stack || '').slice(0, 500) },
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {})
+      // #endregion
       if (err.name !== 'AbortError') {
         pushLines([{ type: 'error', text: `Network error: ${err.message}` }])
       }

@@ -1,11 +1,16 @@
 # Proxy Substack RSS feed to avoid CORS
-# REPLACE "yourname" below with your actual Substack username
 [[redirects]]
   from = "/api/feed"
   to = "https://drizzywhiz.substack.com/feed"
   status = 200
   force = true
 
+# Proxy Lox interpreter API (Render-hosted) to avoid CORS
+[[redirects]]
+  from   = "/api/lox/*"
+  to     = "https://lox-core-api.onrender.com/api/:splat"
+  status = 200
+  force  = true
 
 # SPA fallback — must be last
 [[redirects]]
