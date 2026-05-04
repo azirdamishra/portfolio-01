@@ -6,6 +6,13 @@
   status = 200
   force = true
 
+# Proxy Lox interpreter API to avoid CORS
+[[redirects]]
+  from   = "/api/lox/*"
+  to     = "https://lox-core-api.onrender.com/api/:splat"
+  status = 200
+  force  = true
+
 # SPA fallback — must be last
 [[redirects]]
   from = "/*"

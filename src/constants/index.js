@@ -267,7 +267,7 @@ export const projects = [
         theme: 'btn-back-green',
         name: 'Lox Interpreter (from Crafting Interpreters)',
         description: 'Built a full Java-based interpreter for Lox, a dynamically typed scripting language, by following Crafting Interpreters. Implemented scanning, parsing, AST generation, and a tree-walk evaluator from scratch, a deep dive into how programming languages actually work. Extended it with better error reporting, a small standard library, and an interactive REPL to make it more practical and user-friendly.',
-        link: 'https://github.com/adrianhajdin/threads',
+        link: '/interpreter',
     },
     {
         iconUrl: car,

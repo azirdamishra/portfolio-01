@@ -13,6 +13,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => '/feed',
       },
+      '/api/lox': {
+        target: 'https://lox-core-api.onrender.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/lox/, '/api'),
+      },
     },
   },
 })
