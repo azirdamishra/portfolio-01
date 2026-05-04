@@ -90,7 +90,7 @@ export default function Interpreter() {
     abortRef.current = new AbortController()
 
     try {
-      const res = await fetch('/api/lox/execute', {
+      const res = await fetch('/.netlify/functions/lox-execute', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ source }),
