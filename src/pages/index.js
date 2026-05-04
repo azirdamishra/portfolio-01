@@ -4,5 +4,6 @@ import AboutExperience from './AboutExperience';
 import Blog from './Blog';
 import Projects from './Projects';
 import Contact from './Contact';
+import Interpreter from './Interpreter';
 
-export { Home, About, AboutExperience, Blog, Projects, Contact };
+export { Home, About, AboutExperience, Blog, Projects, Contact, Interpreter };

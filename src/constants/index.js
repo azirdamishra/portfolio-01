@@ -10,15 +10,12 @@ import {
     html,
     javascript,
     linkedin,
-    mongodb,
     motion,
     mui,
     nextjs,
     nodejs,
     pricewise,
     react,
-    redux,
-    sass,
     snapgram,
     summiz,
     tailwindcss,
@@ -31,17 +28,16 @@ import {
     kubernetes,
     fastapi,
     tensorflow,
-    redis,
     postgresql,
     mlflow,
-    keras,
     axios,
     pandas,
     numpy,
     databricks,
     microsoftazure,
     openai,
-    apachemaven
+    apachemaven,
+    springboot
 } from "../assets/icons";
 
 export const skills = [
@@ -136,28 +132,13 @@ export const skills = [
         type: "Cloud",
     },
     {
-        imageUrl: redis,
-        name: "Redis",
-        type: "Database",
-    },
-    {
         imageUrl: postgresql,
         name: "PostgreSQL",
         type: "Database",
     },
     {
-        imageUrl: mongodb,
-        name: "MongoDB",
-        type: "Database",
-    },
-    {
         imageUrl: tensorflow,
         name: "TensorFlow",
-        type: "ML & Data",
-    },
-    {
-        imageUrl: keras,
-        name: "Keras",
         type: "ML & Data",
     },
     {
@@ -186,6 +167,11 @@ export const skills = [
         type: "AI",
     },
     {
+        imageUrl: springboot,
+        name: "Spring Boot",
+        type: "Backend",
+    },
+    {
         imageUrl: apachemaven,
         name: "Maven",
         type: "Build & Tooling",
@@ -205,16 +191,6 @@ export const skills = [
         name: "Next.js",
         type: "Frontend",
     },
-    {
-        imageUrl: redux,
-        name: "Redux",
-        type: "State Management",
-    },
-    {
-        imageUrl: sass,
-        name: "Sass",
-        type: "Frontend",
-    },
 ];
 
 export const experiences = [
@@ -225,14 +201,18 @@ export const experiences = [
         iconBg: "#ffffff",
         date: "July 2023 - Present",
         points: [
-            "ML orchestration platform on Databricks — 100+ models, 20+ clients, 80% less manual setup.",
-            "Patented ML security pipeline integrating 5 scanning tools; cut validation to <10 min and caught 40+ critical vulnerabilities.",
-            "Containerized model deployment pipeline for Kubernetes & Databricks — 3 days to 30 min, 35% cost reduction.",
-            "Inference service powering 10K+ daily predictions across 50+ models at sub-100ms latency.",
-            "Led QA for Honeywell's flagship LLM assistant — won company bug bash; testing whitepaper led to patent submissions.",
-            "Automated test suite (WebDriverIO + Behave) — 150+ scenarios, 90% coverage, regression time cut from 40 hrs to 5 per sprint.",
+            { heading: "AI-Driven Rule Translation Pipeline" },
+            "Designed an agentic RAG pipeline to replace a legacy SkySpark dependency — translates 500+ building energy rules from AXON to a proprietary DSL using layered retrieval across 4 indexes and ANTLR grammar constraints to suppress LLM hallucinations.",
+            "Fine-tuned Vertex AI Gemini (JSONL/GCP) on top of the RAG baseline; correction feedback loops back into the knowledge base; shipped as a FastAPI async service with PostgreSQL-backed versioned prompt management, eliminating the SkySpark vendor dependency entirely.",
+            { heading: "ML Training Orchestration & Inference Platform" },
+            "ML training orchestration on Databricks for 100+ models across 20+ multi-tenant clients using MLFlow — reduced manual setup 80%, maintained 99.5% job success rate.",
+            "FastAPI async inference layer processing 10K+ daily predictions across 50+ models at sub-100ms latency; async Delta Lake writes and drift detection cut debugging cycles 60%.",
+            "Containerized model deployment pipeline dispatching to Kubernetes or Databricks — cut deploy time from 3 days to 30 minutes, reduced infra costs 35%.",
+            { heading: "Security, Quality & LLM Testing" },
+            "Security validation pipeline across 5 tools (Coverity, ModelScan, Twistlock, Black Duck Hub, Malware Scan) — caught 40+ vulnerabilities, maintained 100% SOC 2 compliance.",
+            "Won company-wide bug bash on Honeywell's flagship LLM assistant; authored LLM testing whitepaper yielding multiple patent submissions; automated 150+ test scenarios, compressing regression from 40 hrs to 5 hrs/sprint.",
         ],
-        tools: "MLFlow, FastAPI, Databricks, Unity Catalog, TensorFlow, Coverity, ModelScan, Twistlock, Black Duck Hub, Azure Cloud, Postgres, Azure Delta Lake, Kubernetes, Python Behave",
+        tools: "MLFlow, FastAPI, Databricks, Unity Catalog, TensorFlow, Vertex AI, GCP, Coverity, ModelScan, Twistlock, Black Duck Hub, Azure Cloud, PostgreSQL, Azure Delta Lake, Kubernetes, Python Behave, TypeScript, WebDriverIO",
     },
 ];
 
@@ -255,19 +235,20 @@ export const socialLinks = [
 ];
 
 export const projects = [
-    {
-        iconUrl: pricewise,
-        theme: 'btn-back-red',
-        name: 'Eatery Recommender',
-        description: 'Built a group-based restaurant recommendation app that picks spots based on everyone’s location and suggests must-try dishes using OpenAI. FastAPI powers the backend, React + Tailwind handles the UI, and everything runs through a Dockerized CI/CD setup.',
-        link: 'https://github.com/adrianhajdin/pricewise',
-    },
+//    {
+//        iconUrl: pricewise,
+//        theme: 'btn-back-red',
+//        name: 'Eatery Recommender',
+//        description: 'Built a group-based restaurant recommendation app that picks spots based on everyone’s location and suggests must-try dishes using OpenAI. FastAPI powers the backend, React + Tailwind handles the UI, and everything runs through a Dockerized CI/CD setup.',
+//        link: 'https://github.com/adrianhajdin/pricewise',
+//    },
+
     {
         iconUrl: threads,
         theme: 'btn-back-green',
         name: 'Lox Interpreter (from Crafting Interpreters)',
         description: 'Built a full Java-based interpreter for Lox, a dynamically typed scripting language, by following Crafting Interpreters. Implemented scanning, parsing, AST generation, and a tree-walk evaluator from scratch, a deep dive into how programming languages actually work. Extended it with better error reporting, a small standard library, and an interactive REPL to make it more practical and user-friendly.',
-        link: 'https://github.com/adrianhajdin/threads',
+        link: '/interpreter',
     },
     {
         iconUrl: car,
@@ -276,11 +257,11 @@ export const projects = [
         description: 'Built a lightweight, privacy-first Chrome extension to make studying and reading online more focused. With just a click, you can blur out distracting content or highlight important text using custom colors. Features a clean popup UI, persistent settings with Chrome Sync, and a snappy user experience, keeping speed and simplicity in mind.',
         link: 'https://github.com/adrianhajdin/project_next13_car_showcase',
     },
-    {
-        iconUrl: snapgram,
-        theme: 'btn-back-pink',
-        name: 'Weekend Activity Aggregator',
-        description: 'Built a fast, async-powered tool that crawls popular event listing sites to find fun things to do over the weekend: gigs, workshops, meetups etc. Might turn it into a simple web dashboard but for now, it gives me a quick weekend gameplan with just one command.',
-        link: 'https://github.com/adrianhajdin/social_media_app',
-    }
+    // {
+    //     iconUrl: snapgram,
+    //     theme: 'btn-back-pink',
+    //     name: 'Weekend Activity Aggregator',
+    //     description: 'Built a fast, async-powered tool that crawls popular event listing sites to find fun things to do over the weekend: gigs, workshops, meetups etc. Might turn it into a simple web dashboard but for now, it gives me a quick weekend gameplan with just one command.',
+    //     link: 'https://github.com/adrianhajdin/social_media_app',
+    // }
 ];

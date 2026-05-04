@@ -1,7 +1,7 @@
 // import React from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import { Home, About, AboutExperience, Blog, Projects, Contact } from './pages'
+import { Home, About, AboutExperience, Blog, Projects, Contact, Interpreter } from './pages'
 
 const App = () => {
   return (
@@ -15,6 +15,7 @@ const App = () => {
           <Route path="/blog" element={<Blog />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/interpreter" element={<Interpreter />} />
         </Routes>
       </Router>
     </main>

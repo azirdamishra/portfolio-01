@@ -40,11 +40,10 @@ const Projects = () => {
               <div className='mt-5 flex items-center gap-2 font-poppins'>
                 <Link
                   to={project.link}
-                  target='_blank'
-                  rel='noopener noreferrer'
+                  {...(!project.link.startsWith('/') && { target: '_blank', rel: 'noopener noreferrer' })}
                   className='font-semibold text-blue-600'
                 >
-                  Live Link
+                  {project.link.startsWith('/') ? 'Try it live' : 'Live Link'}
                 </Link>
                 <img
                   src={arrow}
