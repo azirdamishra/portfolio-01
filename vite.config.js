@@ -13,10 +13,10 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => '/feed',
       },
-      '/api/lox': {
+      '/.netlify/functions/lox-execute': {
         target: 'https://lox-core-api.onrender.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/lox/, '/api'),
+        rewrite: () => '/api/execute',
         configure: (proxy) => {
           proxy.on('proxyReq', (proxyReq) => {
             proxyReq.removeHeader('origin')

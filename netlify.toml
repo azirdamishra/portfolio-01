@@ -6,13 +6,6 @@
   status = 200
   force = true
 
-# Proxy Lox interpreter API via Netlify Function so the upstream
-# Render API never sees an Origin header (which it rejects with 403).
-[[redirects]]
-  from   = "/api/lox/execute"
-  to     = "/.netlify/functions/lox-execute"
-  status = 200
-  force  = true
 
 # SPA fallback — must be last
 [[redirects]]
