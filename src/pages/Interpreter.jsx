@@ -166,7 +166,7 @@ export default function Interpreter() {
         </span>
       </h1>
 
-      <p className="mt-5 text-slate-500 max-w-2xl">
+      <p className="mt-5 text-slate-500 dark:text-slate-400 max-w-2xl">
         An interactive playground for{' '}
         <a
           href="https://craftinginterpreters.com/the-lox-language.html"
@@ -244,7 +244,7 @@ export default function Interpreter() {
         </div>
       </div>
 
-      <p className="mt-4 text-xs text-slate-400 font-mono text-center">
+      <p className="mt-4 text-xs text-slate-400 dark:text-slate-500 font-mono text-center">
         Enter&nbsp;to run &nbsp;·&nbsp; Shift+Enter&nbsp;for newline &nbsp;·&nbsp; ↑↓&nbsp;history &nbsp;·&nbsp; Ctrl+L&nbsp;clear
       </p>
     </section>
