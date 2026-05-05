@@ -165,13 +165,15 @@ export default function Interpreter() {
   const [historyIndex, setHistoryIndex] = useState(-1)
   const [isLoading, setIsLoading] = useState(false)
 
-  const bottomRef   = useRef(null)
-  const inputRef    = useRef(null)
-  const abortRef    = useRef(null)
-  const terminalRef = useRef(null)
+  const inputRef       = useRef(null)
+  const abortRef       = useRef(null)
+  const terminalRef    = useRef(null)
+  const terminalBodyRef = useRef(null)
 
   const scrollToBottom = useCallback(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (terminalBodyRef.current) {
+      terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight
+    }
   }, [])
 
   useEffect(() => { scrollToBottom() }, [lines, isLoading, scrollToBottom])
@@ -313,6 +315,7 @@ export default function Interpreter() {
 
         {/* Output scroll area */}
         <div
+          ref={terminalBodyRef}
           className="p-5 overflow-y-auto cursor-text"
           style={{ minHeight: '340px', maxHeight: '520px' }}
         >
@@ -349,7 +352,6 @@ export default function Interpreter() {
             </div>
           )}
 
-          <div ref={bottomRef} />
         </div>
       </div>
 
