@@ -18,7 +18,7 @@ function RouteAwareDark({ children }) {
 const App = () => {
   return (
     <ThemeProvider>
-      <main className="bg-slate-300/20 h-full dark:bg-slate-900 transition-colors duration-300">
+      <main className="bg-slate-300/20 min-h-screen dark:bg-slate-900 transition-colors duration-300">
         <Router>
           <RouteAwareDark>
             <Navbar />
