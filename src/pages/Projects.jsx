@@ -11,7 +11,7 @@ const Projects = () => {
         My <span className='blue-gradient_text font-semibold drop-shadow'>Projects</span>
       </h1>
 
-      <div className='mt-5 flex flex-col gap-3 text-slate-500'>
+      <div className='mt-5 flex flex-col gap-3 text-slate-500 dark:text-slate-400'>
         <p>I've embarked on numerous projects throughout the year. Many of them are open-source, so if you come across
           something that piques your interest, feel free to explore the codebase and contribute your ideas for further enhancements.
           Your collaboration is highly valued!
@@ -33,15 +33,15 @@ const Projects = () => {
             </div>
 
             <div className='mt-5 flex flex-col'>
-              <h4 className='text-2xl font-poppins font-semibold'>{project.name}</h4>
-              <p className='mt-2 text-slate-500'>
+              <h4 className='text-2xl font-poppins font-semibold dark:text-slate-100'>{project.name}</h4>
+              <p className='mt-2 text-slate-500 dark:text-slate-400'>
                 {project.description}
               </p>
               <div className='mt-5 flex items-center gap-2 font-poppins'>
                 <Link
                   to={project.link}
                   {...(!project.link.startsWith('/') && { target: '_blank', rel: 'noopener noreferrer' })}
-                  className='font-semibold text-blue-600'
+                  className='font-semibold text-blue-600 dark:text-blue-400'
                 >
                   {project.link.startsWith('/') ? 'Try it live' : 'Live Link'}
                 </Link>
@@ -56,7 +56,7 @@ const Projects = () => {
         ))}
       </div>
 
-      <hr className='border-slate-200'/>
+      <hr className='border-slate-200 dark:border-slate-700'/>
 
       <CTA />
     </section>

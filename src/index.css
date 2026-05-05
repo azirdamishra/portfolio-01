@@ -181,3 +181,13 @@ body:has(.card[data-color="green"]:hover) {
   box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
     0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
 }
+
+/* Dark mode overrides for utility classes that can't take inline dark: modifiers */
+.dark .input,
+.dark .textarea {
+  @apply bg-slate-800 border-slate-600 text-slate-100 focus:ring-blue-400 focus:border-blue-400;
+}
+
+.dark .cta-text {
+  @apply text-slate-300;
+}
