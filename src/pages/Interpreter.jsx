@@ -1,5 +1,112 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 
+function SnippetCard({ snippet, onRun, terminalRef }) {
+  const [open, setOpen] = useState(false)
+
+  function handleRun() {
+    onRun(snippet.source)
+    terminalRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  return (
+    <div className="rounded-xl border border-gray-700 overflow-hidden" style={{ background: '#161b22' }}>
+      <button
+        onClick={() => setOpen(o => !o)}
+        className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-white/5 transition-colors"
+      >
+        <div>
+          <span className="font-mono text-sm font-semibold text-cyan-400">{snippet.id}</span>
+          <span className="ml-3 text-sm text-gray-300">{snippet.title}</span>
+          {snippet.description && (
+            <span className="ml-3 text-xs text-gray-500">{snippet.description}</span>
+          )}
+        </div>
+        <svg
+          className={`w-4 h-4 text-gray-400 shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+          fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {open && (
+        <div className="border-t border-gray-700">
+          <pre
+            className="px-5 py-4 font-mono text-sm text-green-400 leading-6 overflow-x-auto whitespace-pre"
+            style={{ background: '#0d1117' }}
+          >
+            {snippet.source}
+          </pre>
+          <div className="px-5 py-3 flex justify-end" style={{ background: '#0d1117' }}>
+            <button
+              onClick={handleRun}
+              className="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium
+                         bg-gradient-to-r from-[#00c6ff] to-[#0072ff] text-white
+                         hover:opacity-90 transition-opacity"
+            >
+              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+              Run in terminal
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function SnippetsSection({ onRun, terminalRef }) {
+  const [snippets, setSnippets] = useState([])
+  const [status, setStatus] = useState('loading')
+
+  useEffect(() => {
+    fetch('/api/lox/snippets')
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(data => { setSnippets(data); setStatus('ok') })
+      .catch(() => setStatus('error'))
+  }, [])
+
+  return (
+    <div className="mt-16">
+      <h2 className="subhead-text">
+        Code{' '}
+        <span className="blue-gradient_text font-semibold drop-shadow">Examples</span>
+      </h2>
+      <p className="mt-3 mb-8 text-slate-500 dark:text-slate-400 text-sm">
+        Expand any snippet to view the source, then run it directly in the terminal above.
+      </p>
+
+      {status === 'loading' && (
+        <div className="space-y-3">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="h-14 rounded-xl animate-pulse" style={{ background: '#161b22' }} />
+          ))}
+        </div>
+      )}
+
+      {status === 'error' && (
+        <p className="font-mono text-sm text-red-400">
+          Could not load snippets — the API may be sleeping (Render cold start). Try refreshing in a moment.
+        </p>
+      )}
+
+      {status === 'ok' && (
+        <div className="space-y-3">
+          {snippets.map(snippet => (
+            <SnippetCard
+              key={snippet.id}
+              snippet={snippet}
+              onRun={onRun}
+              terminalRef={terminalRef}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 const WELCOME_LINES = [
   { type: 'system', text: '╔══════════════════════════════════════════════════════╗' },
   { type: 'system', text: '║          Lox Interpreter  —  tree-walk v1.0          ║' },
@@ -58,12 +165,15 @@ export default function Interpreter() {
   const [historyIndex, setHistoryIndex] = useState(-1)
   const [isLoading, setIsLoading] = useState(false)
 
-  const bottomRef = useRef(null)
-  const inputRef  = useRef(null)
-  const abortRef  = useRef(null)
+  const inputRef       = useRef(null)
+  const abortRef       = useRef(null)
+  const terminalRef    = useRef(null)
+  const terminalBodyRef = useRef(null)
 
   const scrollToBottom = useCallback(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (terminalBodyRef.current) {
+      terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight
+    }
   }, [])
 
   useEffect(() => { scrollToBottom() }, [lines, isLoading, scrollToBottom])
@@ -182,6 +292,7 @@ export default function Interpreter() {
 
       {/* Terminal window */}
       <div
+        ref={terminalRef}
         className="mt-10 rounded-xl overflow-hidden shadow-2xl border border-gray-700"
         style={{ background: '#0d1117' }}
         onClick={focusInput}
@@ -204,6 +315,7 @@ export default function Interpreter() {
 
         {/* Output scroll area */}
         <div
+          ref={terminalBodyRef}
           className="p-5 overflow-y-auto cursor-text"
           style={{ minHeight: '340px', maxHeight: '520px' }}
         >
@@ -240,13 +352,14 @@ export default function Interpreter() {
             </div>
           )}
 
-          <div ref={bottomRef} />
         </div>
       </div>
 
       <p className="mt-4 text-xs text-slate-400 dark:text-slate-500 font-mono text-center">
         Enter&nbsp;to run &nbsp;·&nbsp; Shift+Enter&nbsp;for newline &nbsp;·&nbsp; ↑↓&nbsp;history &nbsp;·&nbsp; Ctrl+L&nbsp;clear
       </p>
+
+      <SnippetsSection onRun={runCode} terminalRef={terminalRef} />
     </section>
   )
 }
