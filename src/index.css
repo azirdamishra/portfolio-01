@@ -13,6 +13,10 @@ body {
   font-family: "Work Sans", sans-serif;
 }
 
+*, *::before, *::after {
+  transition: color 250ms ease, background-color 250ms ease, border-color 250ms ease;
+}
+
 body:has(.card[data-color="blue"]:hover) {
   background-color: rgb(var(--blue-rgb) / 25%);
 }
