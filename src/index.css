@@ -182,7 +182,20 @@ body:has(.card[data-color="green"]:hover) {
     0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
 }
 
+/* Suppress the light glow on skill/project icon cards in dark mode */
+.dark .block-container .btn-back {
+  box-shadow: 16px 0 40px rgba(0, 0, 0, 0.4);
+}
+
 /* Dark mode overrides for utility classes that can't take inline dark: modifiers */
+.dark .head-text {
+  @apply text-white;
+}
+
+.dark .subhead-text {
+  @apply text-white;
+}
+
 .dark .input,
 .dark .textarea {
   @apply bg-slate-800 border-slate-600 text-slate-100 focus:ring-blue-400 focus:border-blue-400;
