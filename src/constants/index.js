@@ -255,7 +255,7 @@ export const projects = [
         theme: 'btn-back-blue',
         name: 'HylyTool Chrome Extension',
         description: 'Built a lightweight, privacy-first Chrome extension to make studying and reading online more focused. With just a click, you can blur out distracting content or highlight important text using custom colors. Features a clean popup UI, persistent settings with Chrome Sync, and a snappy user experience, keeping speed and simplicity in mind.',
-        link: 'https://github.com/adrianhajdin/project_next13_car_showcase',
+        link: 'https://chromewebstore.google.com/detail/hylytool/nobfjmbpgjmimofjmgomnnojenplfmgm',
     },
     // {
     //     iconUrl: snapgram,
